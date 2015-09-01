@@ -4,6 +4,12 @@ nnoremap <S-Right> :tabnext<CR>
 nnoremap lp i()<Esc>i
 nnoremap <leader>o o<Esc>k
 
+"change dir
+nnoremap <leader> :cd %:p:h<CR>
+
+"open file
+nnoremap <leader>op :browse confirm e<CR> :cd %:p:h<CR> :echo 'Changing base directory'<CR>
+
 "node please test
 nnoremap npt :!clear && npm test<CR>
 
