@@ -1,7 +1,8 @@
 nnoremap <S-Left> :tabprev<CR>
 nnoremap <S-Right> :tabnext<CR>
 
-nnoremap lp i()<Esc>i
+nnoremap ]ç i()<Esc>i
+inoremap ]ç ()<Esc>i
 nnoremap <leader>o o<Esc>k
 
 "change dir

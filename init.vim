@@ -1,5 +1,6 @@
 let mapleader = ","
 set t_Co=256
+set guifont=Source\ Code\ Pro\ Medium\ 14
 
 "tabs
 set expandtab
