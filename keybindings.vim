@@ -1,21 +1,37 @@
-nnoremap <S-Left> :tabprev<CR>
-nnoremap <S-Right> :tabnext<CR>
+nnoremap <C-PageUp> :tabprev<CR>
+nnoremap <C-PageDown> :tabnext<CR>
 
 nnoremap ]ç i()<Esc>i
 inoremap ]ç ()<Esc>i
 nnoremap <leader>o o<Esc>k
 
+"shift text selection
+inoremap <S-Up> <Esc>v<Up>
+inoremap <S-Left> <Esc>v<Left>
+inoremap <S-Down> <Esc>v<Down>
+inoremap <S-Right> <Esc>v<Right>
+nnoremap <S-Up> v<Up>
+nnoremap <S-Left> v<Left>
+nnoremap <S-Down> v<Down>
+nnoremap <S-Right> v<Right>
+vnoremap <S-Up> <Up>
+vnoremap <S-Left> <Left>
+vnoremap <S-Down> <Down>
+vnoremap <S-Right> <Right>
+
+nnoremap <C-Up><C-Up><C-Down><C-Down><C-Left><C-Right><C-Left><C-Right><C-b><C-a><C-CR> :echo "STOP CHEATING!"<CR>
+
 "change dir
-nnoremap <leader> :cd %:p:h<CR>
+nnoremap <leader>cd :cd %:p:h<CR>
 
 "open file
 nnoremap <leader>op :browse confirm e<CR> :cd %:p:h<CR> :echo 'Changing base directory'<CR>
 
 "node please test
-nnoremap npt :!clear && npm test<CR>
+nnoremap <leader>npt :!clear && npm test<CR>
 
 "node please start
-nnoremap nps :!clear && npm start<CR>
+nnoremap <leader>nps :!clear && npm start<CR>
 
 "git status
 nnoremap <leader>gs :!clear && git status<CR>
@@ -54,19 +70,24 @@ endfunction
 
 nnoremap <leader>gt :call GitTag()<CR>
 
-fu! MarkFly()
-  let c = '!curl -X POST -d "' . expand('%:f:g')  . '" http://localhost:8494/file'
-  silent! c
-  redraw!
-endfunction
-
-fu! Ahkmed()
-  execute 'normal! mab"zyw`a'
-  if @z == 'silenc'
-    execute 'normal! ae I KILL YOU!'
+fu! ShellExec()
+  let cmd = input('$>')
+  if cmd == ''
+    echo 'no command executed'
   else
-    execute 'normal! ae'
+    execute '!clear && ' . cmd
   endif
 endfunction
 
-inoremap e <Esc>:call Ahkmed()<CR>a
+nnoremap <leader><space> :call ShellExec()<CR>
+
+fu! NpmRun()
+  let cmd = input('npm run ')
+  if cmd == ''
+    echo 'no command executed'
+  else
+    execute '!clear && npm run ' . cmd
+  endif
+endfunction
+
+nnoremap <leader>npm :call NpmRun()<CR>

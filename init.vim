@@ -8,7 +8,6 @@ set shiftwidth=2
 set softtabstop=2
 
 source ~/.vim/keybindings.vim
-source ~/.vim/arrowjs.vim
 
 fu! Mkf() 
   :silent exec '!markfly ' . expand('%:p') . '&'
@@ -41,6 +40,12 @@ syntax on
 filetype plugin indent on
 
 let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme vendetta
 set background=light
 
+"rainbow parentheses
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
