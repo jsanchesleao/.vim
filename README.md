@@ -13,3 +13,12 @@ Run `git submodule --update` to fetch the dependencies
 Finally, to enable features, source init.vim file
 
 This should work for *vim* and *gvim*
+
+
+A little note about sparkup plugin:
+
+After complete installation:
+```
+  cd .vim/bundle/sparkup
+  make vim-pathogen
+```

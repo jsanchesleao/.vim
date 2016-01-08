@@ -1,9 +1,25 @@
 nnoremap <C-PageUp> :tabprev<CR>
 nnoremap <C-PageDown> :tabnext<CR>
 
+nnoremap <leader>w <C-w>v<C-w>l
+
 nnoremap ]ç i()<Esc>i
 inoremap ]ç ()<Esc>i
 nnoremap <leader>o o<Esc>k
+
+inoremap <C-S-v> <Esc><C-r>+i
+nnoremap ; :
+
+nnoremap / /\v
+vnoremap / /\v
+
+nnoremap <tab> %
+vnoremap <tab> %
+
+nnoremap <leader>a :Ack<Space>
+
+"save as root
+cmap w!! w !sudo tee % >/dev/null
 
 "shift text selection
 inoremap <S-Up> <Esc>v<Up>
@@ -19,7 +35,7 @@ vnoremap <S-Left> <Left>
 vnoremap <S-Down> <Down>
 vnoremap <S-Right> <Right>
 
-nnoremap <C-Up><C-Up><C-Down><C-Down><C-Left><C-Right><C-Left><C-Right><C-b><C-a><C-CR> :echo "STOP CHEATING!"<CR>
+nnoremap <C-Up><C-Up><C-Down><C-Down><C-Left><C-Right><C-Left><C-Right><C-b><C-a> :echo "STOP CHEATING!"<CR>
 
 "change dir
 nnoremap <leader>cd :cd %:p:h<CR>
@@ -56,6 +72,9 @@ nnoremap <leader>gg :call GitCommit()<CR>
 "git push
 nnoremap <leader>gp :!clear && git push<CR>
 
+"git pull
+nnoremap <leader>gl :!clear && git pull<CR>
+
 "git tag
 fu! GitTag() 
   let bla = input('tag name: ')
@@ -70,8 +89,10 @@ endfunction
 
 nnoremap <leader>gt :call GitTag()<CR>
 
+nnoremap <leader>gh :echo "GIT keybindings:\n\ngs: git status\nga: git add -i\ngg: git commit\ngp: git push\ngt: git tag\ngl: git pull"<CR>
+
 fu! ShellExec()
-  let cmd = input('$>')
+  let cmd = input('$> ')
   if cmd == ''
     echo 'no command executed'
   else

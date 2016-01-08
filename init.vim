@@ -1,15 +1,34 @@
 let mapleader = ","
 set t_Co=256
 set guifont=Source\ Code\ Pro\ Medium\ 14
+set number
+set relativenumber
 
 "tabs
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+set backspace=indent,eol,start
+set incsearch
+set nobackup
+set noswapfile
+set pastetoggle=<F2>
+
+set ignorecase
+set smartcase
+set colorcolumn=85
+
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+autocmd filetype html,xml,jsx set listchars-=tab:>.
+autocmd FocusLost * :wa
+
+autocmd FileType javascript.jsx runtime! ftplugin/html/sparkup.vim
+
 source ~/.vim/keybindings.vim
 
-fu! Mkf() 
+fu! Mkf()
   :silent exec '!markfly ' . expand('%:p') . '&'
   :redraw!
 endfunction
