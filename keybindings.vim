@@ -1,5 +1,7 @@
 nnoremap <C-PageUp> :tabprev<CR>
 nnoremap <C-PageDown> :tabnext<CR>
+inoremap <C-PageUp> <Esc>:tabprev<CR>
+inoremap <C-PageDown> <Esc>:tabnext<CR>
 
 nnoremap <leader>w <C-w>v<C-w>l
 
@@ -7,7 +9,7 @@ nnoremap ]ç i()<Esc>i
 inoremap ]ç ()<Esc>i
 nnoremap <leader>o o<Esc>k
 
-inoremap <C-S-v> <Esc><C-r>+i
+nnoremap <c-g> <c-w>gf
 nnoremap ; :
 
 nnoremap / /\v
@@ -70,10 +72,10 @@ endfunction
 nnoremap <leader>gg :call GitCommit()<CR>
 
 "git push
-nnoremap <leader>gp :!clear && git push<CR>
+nnoremap <leader>gp :!clear && echo "git push" && git push<CR>
 
 "git pull
-nnoremap <leader>gl :!clear && git pull<CR>
+nnoremap <leader>gl :!clear && echo "git pull" && git pull<CR>
 
 "git tag
 fu! GitTag() 
@@ -96,7 +98,7 @@ fu! ShellExec()
   if cmd == ''
     echo 'no command executed'
   else
-    execute '!clear && ' . cmd
+    execute '!' . cmd
   endif
 endfunction
 
@@ -112,3 +114,31 @@ fu! NpmRun()
 endfunction
 
 nnoremap <leader>npm :call NpmRun()<CR>
+
+fu! RunCmd()
+  let cmd = input('$> ')
+  if cmd == ''
+    echo 'no command'
+  else
+    :new
+    :setlocal buftype=nofile
+    execute ':read !'.cmd
+    nnoremap <buffer><silent> q :q!<CR>
+  endif
+endfunction
+
+nnoremap <space><space> :call RunCmd()<CR>
+
+"Toggle Conceal
+fu! ToggleConceal()
+  if (&conceallevel == 0)
+    set conceallevel=1
+  else
+    set conceallevel=0
+  endif
+endfunction
+
+command! ToggleConceal call ToggleConceal()
+
+nnoremap <F8> :ToggleConceal<CR>
+inoremap <F8> <Esc>:ToggleConceal<CR>a
