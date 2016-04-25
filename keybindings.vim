@@ -2,11 +2,11 @@ nnoremap <C-PageUp> :tabprev<CR>
 nnoremap <C-PageDown> :tabnext<CR>
 inoremap <C-PageUp> <Esc>:tabprev<CR>
 inoremap <C-PageDown> <Esc>:tabnext<CR>
+nnoremap <space>n :tabnext<CR>
+nnoremap <space>p :tabprev<CR>
 
 nnoremap <leader>w <C-w>v<C-w>l
 
-nnoremap ]ç i()<Esc>i
-inoremap ]ç ()<Esc>i
 nnoremap <leader>o o<Esc>k
 
 nnoremap <c-g> <c-w>gf
@@ -44,12 +44,6 @@ nnoremap <leader>cd :cd %:p:h<CR>
 
 "open file
 nnoremap <leader>op :browse confirm e<CR> :cd %:p:h<CR> :echo 'Changing base directory'<CR>
-
-"node please test
-nnoremap <leader>npt :!clear && npm test<CR>
-
-"node please start
-nnoremap <leader>nps :!clear && npm start<CR>
 
 "git status
 nnoremap <leader>gs :!clear && git status<CR>
@@ -142,3 +136,20 @@ command! ToggleConceal call ToggleConceal()
 
 nnoremap <F8> :ToggleConceal<CR>
 inoremap <F8> <Esc>:ToggleConceal<CR>a
+
+
+"npm run query
+fu! RunQuery()
+  let q = input('SQL> ')
+  if q == ''
+    echo 'no query'
+  else
+    :new
+    :setlocal buftype=nofile
+    execute ':read !npm run query -- "' .q .'"'
+    nnoremap <buffer><silent> q :q!<CR>
+  endif
+endfunction
+
+nnoremap <leader>q :call RunQuery()<CR>
+
