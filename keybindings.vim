@@ -5,6 +5,10 @@ inoremap <C-PageDown> <Esc>:tabnext<CR>
 nnoremap <space>n :tabnext<CR>
 nnoremap <space>p :tabprev<CR>
 
+nnoremap <space>c ciw
+nnoremap <space>d diw
+nnoremap <space>y yiw
+
 nnoremap <leader>w <C-w>v<C-w>l
 
 nnoremap <leader>o o<Esc>k
@@ -70,6 +74,9 @@ nnoremap <leader>gp :!clear && echo "git push" && git push<CR>
 
 "git pull
 nnoremap <leader>gl :!clear && echo "git pull" && git pull<CR>
+
+"spawn tig
+nnoremap <leader>gi :!clear && tig<CR>
 
 "git tag
 fu! GitTag() 
