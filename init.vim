@@ -31,6 +31,11 @@ autocmd FocusLost * :wa
 
 autocmd FileType javascript.jsx runtime! ftplugin/html/sparkup.vim
 
+"Silent command
+command! -nargs=1 Silent
+      \ | execute ':silent !'.<q-args>
+      \ | execute ':redraw!'
+
 source ~/.vim/keybindings.vim
 
 "ctrl-p configuration:
@@ -45,6 +50,15 @@ nnoremap <Leader>h <Plug>(easymotion-linebackward)
 "easy editing of this file
 nnoremap <Leader>ev :tabnew ~/.vim/init.vim<CR>
 nnoremap <Leader>sv :source ~/.vim/init.vim<CR>
+
+"vimux config
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "30"
+let g:VimuxPromptString = "tmux> "
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
+nnoremap <Leader>vx :VimuxInterruptRunner<CR>
 
 "NERDTree config
 autocmd StdinReadPre * let s:std_in=1
@@ -93,3 +107,5 @@ autocmd BufLeave *.js               normal! mJ
 autocmd BufLeave *.clj,*.cljs       normal! mL
 autocmd BufLeave *.elm              normal! mE
 autocmd BufLeave vimrc,*.vim        normal! mV
+
+source ~/.vim/ideconfig.vim

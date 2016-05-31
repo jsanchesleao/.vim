@@ -9,6 +9,16 @@ nnoremap <space>c ciw
 nnoremap <space>d diw
 nnoremap <space>y yiw
 
+inoremap kj <Esc>
+imap çd "
+imap ç9 (
+imap ç0 )
+imap ç[ {
+imap çq '
+imap ç, <
+imap ç. >
+imap ç; :
+
 nnoremap <leader>w <C-w>v<C-w>l
 
 nnoremap <leader>o o<Esc>k
@@ -76,7 +86,7 @@ nnoremap <leader>gp :!clear && echo "git push" && git push<CR>
 nnoremap <leader>gl :!clear && echo "git pull" && git pull<CR>
 
 "spawn tig
-nnoremap <leader>gi :!clear && tig<CR>
+nnoremap <leader>gi :Silent tig<CR>
 
 "git tag
 fu! GitTag() 
